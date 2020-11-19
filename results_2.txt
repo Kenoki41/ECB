@@ -1,0 +1,34 @@
+name: John
+address: 2 Fairmount St, Dulwich Hill, NSW 2203
+
+name: Robert Taylor
+address: 38 Carrington St, Summer Hill, NSW 2130
+
+name: Robert Taylor
+address: 39 Carrington St, Summer Hill, NSW 2130
+
+name: Robert Taylor
+address: 41 Carrington St, Summer Hill, NSW 2130
+
+name: Robert Taylor
+address: 43 Carrington St, Summer Hill, NSW 2130
+
+name: Michael Willianm
+address: 37 Barton Ave, Haberfield, NSW 2045
+
+name: Patricia Davies
+
+name: Linda Evans
+address: 119 Gibbes St, Rockdale, NSW 2216
+
+name: Posephine Esmerelda Bloggs
+address: 102 Smith St, Summer hill, NSW 2130
+phone: 123456789
+
+name: Posephine Esmerelda Bloggs
+address: 102 Smith St, Summer hill, NSW 2130
+
+name: Posephine Esmerelda Bloggs
+address: 102 Smith St, Summer hill, NSW 2130
+phone: 9876543210
+
