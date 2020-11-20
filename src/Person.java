@@ -1,6 +1,6 @@
 public class Person {
-    private Name name;
-    private Birthday birthday;
+    private String name;
+    private String birthday;
     private String phone;
     private String email;
     private String address;
@@ -14,7 +14,7 @@ public class Person {
         address = null;
     }
 
-    public Person(Name name, Birthday birthday, String phone, String email, String address){
+    public Person(String name, String birthday, String phone, String email, String address){
         this.name = name;
         this.birthday = birthday;
         this.phone = phone;
@@ -29,7 +29,7 @@ public class Person {
     // Read the string and save to arraylist, assign value to variables if match requirement
     public void getPersonInfo(String s){
         // Remove blank and split with ";" and save into arraylist
-        String[] infoArraylist = s.split(";");
+        String[] infoArraylist = s.split(";\\s*");
 
         for(int i = 0; i < infoArraylist.length; i++){
             String[] str = infoArraylist[i].split("\\s");
@@ -37,15 +37,15 @@ public class Person {
             // Read the input and construct the object
             if(str[0].equals("name")){
                 if (str.length == 2){
-                    name = new Name(str[1]);
+                    name = str[1];
                 } else if(str.length == 3){
-                    name = new Name(str[1], str[2]);
+                    name = str[1] + " " + str[2];
                 } else if (str.length == 4){
-                    name = new Name(str[1], str[2], str[3]);
+                    name = str[1] + " " + str[2] + " " +str[3];
                 }
 
             } else if(str[0].equals("birthday")){
-                birthday = new Birthday(str[1]);
+                birthday = str[1];
 
             } else if (str[0].equals("phone")){
                 // Check the phone number is pure number, if yes remove First 0
@@ -103,14 +103,14 @@ public class Person {
     }
 
     public void endLine(String infoType, String info){
-        rptLine = "====== end of query " + infoType +" " + info + " ======\n";
+        rptLine = "====== end of query " + infoType +" " + info + " ======\n\n";
     }
 
-    public Name getName() {
+    public String getName() {
         return name;
     }
 
-    public Birthday getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
@@ -128,6 +128,30 @@ public class Person {
 
     public String getRptLine() {
         return rptLine;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setRptLine(String rptLine) {
+        this.rptLine = rptLine;
     }
 
     @Override

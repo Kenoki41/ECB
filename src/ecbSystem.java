@@ -24,26 +24,17 @@ public class ecbSystem {
     public void readContact(){
         try{
             String data = "";  // Initialize a string to store data read from text file
-            String name = "";
-            String birthday = "";
             Scanner scanner = new Scanner(inputFile); // Scanner to read the file
-            System.out.println("Start reading file ----------------");
+            System.out.println("****************** Start reading file ******************");
             // Read file line by line
             while (scanner.hasNextLine()) {
                 // Read the first line from file
                 String person = scanner.nextLine();
-                System.out.println("This line includes: " + person);
                 // Judge it's empty or not
                 if (!person.isEmpty()) {
                     // If not, read the first word of this line
                     Scanner sc = new Scanner(person);
                     String infoType = sc.next();
-                    if (infoType.equals("name")){
-                        name = person;
-                    }
-                    if (infoType.equals("birthday")){
-                        birthday = person;
-                    }
                     // Judge this line, what type of information it is
                     if (infoType.equals("name") || infoType.equals("birthday") ||
                             infoType.equals("phone") || infoType.equals("address") || infoType.equals("email")){
@@ -61,30 +52,21 @@ public class ecbSystem {
                     // after read a line, close the scanner
                     sc.close();
                 } else {
-                    if (name.matches("^[A-Za-z\\s]+[\\.]?[A-Za-z\\s]*$") ){
-                        //&& birthday.matches("^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$")
-                        System.out.println("++++++++++" + data);
-                        // If the String is empty, means one person's info load is finished, save into object's arraylist
-                        databaseHelper.addPerson(data);
-
-                    }
+                    System.out.println(data);
+                    // If the String is empty, means one person's info load is finished, save into object's arraylist
+                    databaseHelper.addPerson(data);
                     // Initialize the String and get ready to read a new Person
                     data = "";
-                    name = "";
-                    birthday = "";
 
                 }
             }
-            for (Person p: databaseHelper.getPersonArrayList()){
-                if (p.getName().getFullName() == "Robert Taylor") { databaseHelper.getPersonArrayList().remove(p);}
-                System.out.println(p.toString());
-                System.out.println(p.getBirthday());
-            }
-            // Save the data again in order to make sure no more data in the string
-            //databaseHelper.addPerson(data);
+            System.out.println(data);
+            // Add the last person loaded from scanner
+            databaseHelper.addPerson(data);
             // Close the file scanner
             scanner.close();
-            System.out.println("Finish reading file ---------------");
+            System.out.println("****************** Finish reading file ******************");
+            System.out.println();
         } catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
         }
@@ -113,19 +95,19 @@ public class ecbSystem {
                     if (sc.hasNextLine()){
                         // Add Person
                         if (operation.equals("add")) {
-                            info = sc.nextLine();
-                            databaseHelper.updatePerson(info);
+                            info = sc.nextLine().substring(1); // Remove the whitespace at the beginning
+                            databaseHelper.addPerson(info);
                         } else if (operation.equals("delete"))
                         // Delete Person
                         {
-                            info = sc.nextLine();
+                            info = sc.nextLine().substring(1); // Remove the whitespace at the beginning
                             databaseHelper.deletePerson(info);
                         } else if (operation.equals("query"))
                         // Query the info
                         {
                             // Assign value to string and use the search method in DatabaseHelper class
                             infoType = sc.next();
-                            info = sc.nextLine();
+                            info = sc.nextLine().substring(1); // Remove the whitespace at the beginning
                             databaseHelper.searchPerson(infoType, info);
                             // Set value to true if there is an instruction to query
                             isExist = true;
@@ -164,13 +146,13 @@ public class ecbSystem {
             // Read the object arraylist
             for (Person p: databaseHelper.getPersonArrayList()) {
                 // If it is an valid name, save it
-                if (p.getName() != null && p.getName().isValidName()){
-                    printWriter.print("name: " + p.getName().getFullName() + "\n");
+                if (p.getName() != null){
+                    printWriter.print("name: " + p.getName() + "\n");
                 } else { createOrNot = false; }
                 // If it is an valid birthday, save it
-                if (p.getBirthday() != null && createOrNot && p.getBirthday().isValid()){
-                    printWriter.print("birthday: " + p.getBirthday().dateString() + "\n");
-                }
+                if (p.getBirthday() != null && createOrNot){
+                    printWriter.print("birthday: " + p.getBirthday() + "\n");
+                } else { createOrNot = false; }
                 // If it has address, save it
                 if (p.getAddress() != null && createOrNot) {
                     printWriter.print("address: " + p.getAddress() + "\n");
@@ -183,7 +165,6 @@ public class ecbSystem {
                 if (p.getEmail() != null && createOrNot){
                     printWriter.print("email: " + p.getEmail() + "\n");
                 }
-
                 // Print a new line after read person finish
                 printWriter.println("");
             }
@@ -202,12 +183,12 @@ public class ecbSystem {
             // Read the object arraylist
             for (Person p: databaseHelper.getPersonReports()) {
                 // If it is an valid name, save it
-                if (p.getName().isValidName()){
-                    printWriter.print("name: " + p.getName().getFullName() + "\n");
+                if (p.getName() != null){
+                    printWriter.print("name: " + p.getName() + "\n");
                 }
                 // If it is an valid birthday, save it
-                if (p.getBirthday().isValid()){
-                    printWriter.print("birthday: " + p.getBirthday().dateString() + "\n");
+                if (p.getBirthday() != null){
+                    printWriter.print("birthday: " + p.getBirthday() + "\n");
                 }
                 // If it has address, save it
                 if (p.getAddress() != null) {
