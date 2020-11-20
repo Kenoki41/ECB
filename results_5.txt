@@ -49,4 +49,3 @@ address: 60 Morris St, Summer Hill, NSW 2130
 name: Posephine Esmerelda Bloggs
 birthday: 30-10-1960
 address: 102 Smith St, Summer hill, NSW 2130
-

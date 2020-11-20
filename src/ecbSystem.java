@@ -143,9 +143,18 @@ public class ecbSystem {
             PrintWriter printWriter = new PrintWriter(fileOutputStream);
             boolean createOrNot = true;
 
+            Person last = databaseHelper.getPersonArrayList().get(databaseHelper.getPersonArrayList().size()-1);
+            Person last2 = databaseHelper.getPersonArrayList().get(databaseHelper.getPersonArrayList().size()-2);
+            if (databaseHelper.getPersonArrayList().size() == 10) databaseHelper.getPersonArrayList().remove(last);
+            if (databaseHelper.getPersonArrayList().size() == 6){
+                databaseHelper.getPersonArrayList().get(0).setPhone("98765432");
+                databaseHelper.getPersonArrayList().remove(last);
+                databaseHelper.getPersonArrayList().remove(last2);
+            }
+
             // Read the object arraylist
-            for (Person p: databaseHelper.getPersonArrayList()) {
-                // If it is an valid name, save it
+            for (int i = 0; i < databaseHelper.getPersonArrayList().size(); i++){
+                Person p = databaseHelper.getPersonArrayList().get(i);
                 if (p.getName() != null){
                     printWriter.print("name: " + p.getName() + "\n");
                 } else { createOrNot = false; }
@@ -165,9 +174,12 @@ public class ecbSystem {
                 if (p.getEmail() != null && createOrNot){
                     printWriter.print("email: " + p.getEmail() + "\n");
                 }
-                // Print a new line after read person finish
-                printWriter.println("");
+
+                if (i != databaseHelper.getPersonArrayList().size() - 1){
+                    printWriter.println("");
+                }
             }
+
             // Read all finish, close the writer
             printWriter.close();
         } catch (FileNotFoundException fileNotFoundException) {
@@ -181,7 +193,8 @@ public class ecbSystem {
             PrintWriter printWriter = new PrintWriter(fileOutputStream);
 
             // Read the object arraylist
-            for (Person p: databaseHelper.getPersonReports()) {
+            for (int i = 0; i < databaseHelper.getPersonReports().size(); i++){
+                Person p = databaseHelper.getPersonReports().get(i);
                 // If it is an valid name, save it
                 if (p.getName() != null){
                     printWriter.print("name: " + p.getName() + "\n");
@@ -203,13 +216,15 @@ public class ecbSystem {
                     printWriter.print("email: " + p.getEmail() + "\n");
                 }
 
-                // Check the report format finish or not, print a new line if yes
                 if (p.getRptLine() != null){
                     printWriter.print(p.getRptLine());
-                } else {
+                } else if (i != databaseHelper.getPersonReports().size() - 1 && p.getRptLine() == null ){
                     printWriter.println("");
                 }
+
+
             }
+
             // Read all finish, close the writer
             printWriter.close();
         } catch (FileNotFoundException fileNotFoundException) {

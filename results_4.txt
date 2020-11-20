@@ -36,7 +36,3 @@ address: 37 Barton Ave, Haberfield, NSW 2045
 name: Barbara Wilson
 birthday: 01-02-1988
 address: 64 Lennox St, Rockdale, NSW 2216
-
-name: John Jones
-birthday: 18-09-1968
-

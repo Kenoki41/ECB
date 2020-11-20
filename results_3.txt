@@ -1,7 +1,7 @@
 name: Posephine Esmerelda Bloggs
 birthday: 13-05-1980
 address: 102 Smith St, Summer hill, NSW 2130
-phone: 16549853
+phone: 98765432
 email: j.e.bloggs@gmail.com
 
 name: Jo Bloggs
@@ -20,11 +20,3 @@ birthday: 03-01-1988
 address: 64 Lennox St, Rockdale, NSW 2216
 phone: 469832165
 email: b.wilson@fanfare.com.au
-
-name: Posephine Esmerelda Bloggs
-birthday: 13-05-1980
-phone: 98765432
-
-name: Jo Bloggs
-birthday: 08-07-1900
-
