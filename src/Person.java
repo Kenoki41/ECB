@@ -1,4 +1,6 @@
-public class Person {
+import java.util.Comparator;
+
+public class Person implements Comparator<Person> {
     private String name;
     private String birthday;
     private String phone;
@@ -163,5 +165,20 @@ public class Person {
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compare(Person o1, Person o2) {
+
+        if (o1.getBirthday() == o2.getBirthday()){
+            return 0;
+        } else if (o1.getBirthday() == null){
+            return -1;
+        } else if (o2.getBirthday() == null){
+            return 1;
+        }
+
+        return o1.getBirthday().compareTo(o2.getBirthday());
+
     }
 }

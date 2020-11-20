@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class DatabaseHelper {
@@ -161,6 +163,7 @@ public class DatabaseHelper {
             for (Person p: personArrayList){
                 if (p.getBirthday().equals(info)){
                     personReports.add(p);
+
                 }
             }
         }
@@ -178,6 +181,8 @@ public class DatabaseHelper {
         Person endLine = new Person();
         endLine.endLine(infoType, info);
         personReports.add(endLine);
+        System.out.println(personReports.toString());
+        //Collections.sort(personReports, new Person());
     }
 
     public ArrayList<Person> getPersonArrayList(){
